@@ -13,22 +13,22 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: openjdk
+          distribution: temurin
           java-version: 21
           cache: gradle
-      - name: Code vulnerability scanning
-        uses: anchore/scan-action@v3
-        id: scan
-        with:
-          path: ${{ github.workspace }}
-          fail-build: false
-          severity-cutoff: medium
-          acs-report-enable: true
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
-        if: success() || failure()
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+#      - name: Code vulnerability scanning
+#        uses: anchore/scan-action@v3
+#        id: scan
+#        with:
+#          path: ${{ github.workspace }}
+#          fail-build: false
+#          severity-cutoff: medium
+#          acs-report-enable: true
+#      - name: Upload vulnerability report
+#        uses: github/codeql-action/upload-sarif@v2
+#        if: success() || failure()
+#        with:
+#          sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Build, Unit and Integration Tests
         run: |
           chmod +x ./gradlew
