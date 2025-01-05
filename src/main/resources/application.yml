@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: catalog-service
+server:
+  tomcat:
+    threads:
+      min-spare: 1
