@@ -19,7 +19,7 @@ class CatalogServiceApplicationTests {
 
     @Test
     void whenPostRequestThenBookCreated() {
-        var book = new Book("1234567890", "spring start here", "laur spilca", 599d);
+        var book = Book.of("1234567890", "spring start here", "laur spilca", 599d);
         webTestClient
                 .post()
                 .uri("/books")
@@ -35,13 +35,13 @@ class CatalogServiceApplicationTests {
 
     @Test
     void whenPostWithExistingIsbnThenUnProcessableEntity() {
-        var book1 = new Book("0987654321", "spring start here", "laur spilca", 599d);
+        var book1 = Book.of("0987654321", "spring start here", "laur spilca", 599d);
         webTestClient.post()
                 .uri("/books")
                 .bodyValue(book1)
                 .exchange();
 
-        var book2 = new Book("0987654321", "spring security in action", "laur spilca", 2000D);
+        var book2 = Book.of("0987654321", "spring security in action", "laur spilca", 2000D);
 
         webTestClient.post()
                 .uri("/books")
@@ -53,7 +53,7 @@ class CatalogServiceApplicationTests {
     @Test
     void whenAfterSaveGetSameBook() {
         final String isbn = "5789347589";
-        var book = new Book(isbn, "spring start here", "laur spilca", 599d);
+        var book = Book.of(isbn, "spring start here", "laur spilca", 599d);
         webTestClient.post()
                 .uri("/books")
                 .bodyValue(book)
@@ -69,7 +69,7 @@ class CatalogServiceApplicationTests {
     @Test
     void afterDeleteBookNotFound() {
         final String isbn = "5789348790";
-        var book = new Book(isbn, "spring start here", "laur spilca", 599d);
+        var book = Book.of(isbn, "spring start here", "laur spilca", 599d);
         webTestClient.post()
                 .uri("/books")
                 .bodyValue(book)

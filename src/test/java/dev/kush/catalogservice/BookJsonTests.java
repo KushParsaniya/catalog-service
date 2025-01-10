@@ -19,7 +19,7 @@ public class BookJsonTests {
 
     @Test
     void testSerialize() throws IOException {
-        var book = new Book("1234567890", "spring start here", "laur spilca", 599d);
+        var book = Book.of("1234567890", "spring start here", "laur spilca", 599d);
 
         JsonContent<Book> jsonContent = jacksonTester.write(book);
 
@@ -45,6 +45,6 @@ public class BookJsonTests {
                 """;
         assertThat(jacksonTester.parse(content))
                 .usingRecursiveComparison()
-                .isEqualTo(new Book("1234567890","spring security in action","laur spilca", 2000D));
+                .isEqualTo(Book.of("1234567890","spring security in action","laur spilca", 2000D));
     }
 }

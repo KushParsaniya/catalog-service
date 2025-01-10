@@ -1,6 +1,13 @@
 spring:
   application:
     name: catalog-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  sql:
+    init:
+      mode: always
 server:
   tomcat:
     threads:

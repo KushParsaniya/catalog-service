@@ -29,7 +29,7 @@ public class BookServiceTests {
     @Test
     void whenBookToCreateAlreadyExistsThenThrowsError() {
         final String isbn = "1234567890";
-        var book = new Book(isbn, "spring start here", "laur spilca", 599d);
+        var book = Book.of(isbn, "spring start here", "laur spilca", 599d);
 
         when(bookRepository.existsByIsbn(isbn)).thenReturn(true);
         assertThatThrownBy(() -> bookService.addBookToCatalog(book))

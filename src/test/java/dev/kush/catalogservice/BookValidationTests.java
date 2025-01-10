@@ -25,7 +25,7 @@ public class BookValidationTests {
 
     @Test
     void whenAllFieldsCorrectThenValidationSuccess() {
-        var book = new Book("1234567890", "spring start here", "laur spilca", 599d);
+        var book = Book.of("1234567890", "spring start here", "laur spilca", 599d);
 
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).isEmpty();
@@ -33,7 +33,7 @@ public class BookValidationTests {
 
     @Test
     void whereIsbnDefinedButIncorrectThenValidationShouldFail() {
-        var book = new Book("12345678", "spring start here", "laur spilca", 599d);
+        var book = Book.of("12345678", "spring start here", "laur spilca", 599d);
 
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).hasSize(1);
