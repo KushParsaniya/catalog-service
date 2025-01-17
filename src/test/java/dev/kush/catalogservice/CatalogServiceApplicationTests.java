@@ -19,7 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.NONE)
 @Profile("test")
-@Import(DataConfig.class)
 class CatalogServiceApplicationTests {
 
     @Autowired
